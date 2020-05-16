@@ -383,7 +383,7 @@
         <div class="details-item-container">
             <dt class="tag-source">Source:</dt>
             <dd class="tag-source"><ul class="dummy"><li>
-                <a href="index.js.html">index.js</a>, <a href="index.js.html#line13">line 13</a>
+                <a href="index.js.html">index.js</a>, <a href="index.js.html#line12">line 12</a>
             </li></ul></dd>
         </div>
     
@@ -559,7 +559,7 @@
         <div class="details-item-container">
             <dt class="tag-source">Source:</dt>
             <dd class="tag-source"><ul class="dummy"><li>
-                <a href="index.js.html">index.js</a>, <a href="index.js.html#line199">line 199</a>
+                <a href="index.js.html">index.js</a>, <a href="index.js.html#line224">line 224</a>
             </li></ul></dd>
         </div>
     
@@ -604,6 +604,13 @@
     </div>
 
 
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <pre class="prettyprint"><code>db.get("test"); // 12db.add("test", 12); // 24</code></pre>
+
+    </div>
 
 
         
@@ -663,7 +670,7 @@
         <div class="details-item-container">
             <dt class="tag-source">Source:</dt>
             <dd class="tag-source"><ul class="dummy"><li>
-                <a href="index.js.html">index.js</a>, <a href="index.js.html#line52">line 52</a>
+                <a href="index.js.html">index.js</a>, <a href="index.js.html#line59">line 59</a>
             </li></ul></dd>
         </div>
     
@@ -708,6 +715,13 @@
     </div>
 
 
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <pre class="prettyprint"><code>db.all(); // {"test": {"okey": 12}}</code></pre>
+
+    </div>
 
 
         
@@ -841,7 +855,7 @@
         <div class="details-item-container">
             <dt class="tag-source">Source:</dt>
             <dd class="tag-source"><ul class="dummy"><li>
-                <a href="index.js.html">index.js</a>, <a href="index.js.html#line120">line 120</a>
+                <a href="index.js.html">index.js</a>, <a href="index.js.html#line136">line 136</a>
             </li></ul></dd>
         </div>
     
@@ -886,6 +900,13 @@
     </div>
 
 
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <pre class="prettyprint"><code>db.get("test"); // [12, 21, 32]db.delByIndex("test", 1); // [12, 32]</code></pre>
+
+    </div>
 
 
         
@@ -1031,7 +1052,7 @@
         <div class="details-item-container">
             <dt class="tag-source">Source:</dt>
             <dd class="tag-source"><ul class="dummy"><li>
-                <a href="index.js.html">index.js</a>, <a href="index.js.html#line148">line 148</a>
+                <a href="index.js.html">index.js</a>, <a href="index.js.html#line167">line 167</a>
             </li></ul></dd>
         </div>
     
@@ -1076,6 +1097,13 @@
     </div>
 
 
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <pre class="prettyprint"><code>db.get("test"); // [12, 21, 32]db.delByValue("test", 21); // [12, 32]</code></pre>
+
+    </div>
 
 
         
@@ -1186,7 +1214,7 @@
         <div class="details-item-container">
             <dt class="tag-source">Source:</dt>
             <dd class="tag-source"><ul class="dummy"><li>
-                <a href="index.js.html">index.js</a>, <a href="index.js.html#line39">line 39</a>
+                <a href="index.js.html">index.js</a>, <a href="index.js.html#line44">line 44</a>
             </li></ul></dd>
         </div>
     
@@ -1232,6 +1260,13 @@
 
 
 
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <pre class="prettyprint"><code>db.delete("test.okey"); // 12</code></pre>
+
+    </div>
+
 
         
             
@@ -1245,7 +1280,7 @@
 
 
     <div class="description">
-        Gets data from created database.
+        Gets data from created database. Clone of <a href="Database.html#get">get</a> funtion.
     </div>
 
 
@@ -1341,7 +1376,7 @@
         <div class="details-item-container">
             <dt class="tag-source">Source:</dt>
             <dd class="tag-source"><ul class="dummy"><li>
-                <a href="index.js.html">index.js</a>, <a href="index.js.html#line85">line 85</a>
+                <a href="index.js.html">index.js</a>, <a href="index.js.html#line96">line 96</a>
             </li></ul></dd>
         </div>
     
@@ -1508,7 +1543,7 @@
         <div class="details-item-container">
             <dt class="tag-source">Source:</dt>
             <dd class="tag-source"><ul class="dummy"><li>
-                <a href="index.js.html">index.js</a>, <a href="index.js.html#line61">line 61</a>
+                <a href="index.js.html">index.js</a>, <a href="index.js.html#line70">line 70</a>
             </li></ul></dd>
         </div>
     
@@ -1566,13 +1601,20 @@
 
 
 
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <pre class="prettyprint"><code>db.get("test"); // {"okey": 12}</code></pre>
+
+    </div>
+
 
         
             
 
     
 
-    <h4 class="name" id="has"><span class="type-signature"></span>has<span class="signature">(key)</span><span class="type-signature"> &rarr; {Number|String|Boolean|Object|Array}</span></h4>
+    <h4 class="name" id="has"><span class="type-signature"></span>has<span class="signature">(key)</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
 
     
 
@@ -1675,7 +1717,7 @@
         <div class="details-item-container">
             <dt class="tag-source">Source:</dt>
             <dd class="tag-source"><ul class="dummy"><li>
-                <a href="index.js.html">index.js</a>, <a href="index.js.html#line73">line 73</a>
+                <a href="index.js.html">index.js</a>, <a href="index.js.html#line84">line 84</a>
             </li></ul></dd>
         </div>
     
@@ -1711,19 +1753,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Number</span>
-|
-
-<span class="param-type">String</span>
-|
-
 <span class="param-type">Boolean</span>
-|
-
-<span class="param-type">Object</span>
-|
-
-<span class="param-type">Array</span>
 
 
     </dd>
@@ -1732,6 +1762,13 @@
     </div>
 
 
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <pre class="prettyprint"><code>db.has("test"); // true</code></pre>
+
+    </div>
 
 
         
@@ -1877,7 +1914,7 @@
         <div class="details-item-container">
             <dt class="tag-source">Source:</dt>
             <dd class="tag-source"><ul class="dummy"><li>
-                <a href="index.js.html">index.js</a>, <a href="index.js.html#line95">line 95</a>
+                <a href="index.js.html">index.js</a>, <a href="index.js.html#line108">line 108</a>
             </li></ul></dd>
         </div>
     
@@ -1922,6 +1959,13 @@
     </div>
 
 
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <pre class="prettyprint"><code>db.push("test.hello", 12); // [12]</code></pre>
+
+    </div>
 
 
         
@@ -2067,7 +2111,7 @@
         <div class="details-item-container">
             <dt class="tag-source">Source:</dt>
             <dd class="tag-source"><ul class="dummy"><li>
-                <a href="index.js.html">index.js</a>, <a href="index.js.html#line25">line 25</a>
+                <a href="index.js.html">index.js</a>, <a href="index.js.html#line28">line 28</a>
             </li></ul></dd>
         </div>
     
@@ -2125,6 +2169,13 @@
 
 
 
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <pre class="prettyprint"><code>db.set("test.okey", 12); // {"test": {"okey": 12}}</code></pre>
+
+    </div>
+
 
         
             
@@ -2138,7 +2189,7 @@
 
 
     <div class="description">
-        Subtracts a value to data in created database.
+        Subtracts a value to data in created database. Clone of <a href="Database.html#subtract">subtract</a> function.
     </div>
 
 
@@ -2257,7 +2308,7 @@
         <div class="details-item-container">
             <dt class="tag-source">Source:</dt>
             <dd class="tag-source"><ul class="dummy"><li>
-                <a href="index.js.html">index.js</a>, <a href="index.js.html#line241">line 241</a>
+                <a href="index.js.html">index.js</a>, <a href="index.js.html#line269">line 269</a>
             </li></ul></dd>
         </div>
     
@@ -2316,7 +2367,7 @@
 
 
     <div class="description">
-        Subtracts a value to data in created database.
+        Subtracts a value to data in created database. Clone of <a href="Database.html#subtract">subtract</a> function.
     </div>
 
 
@@ -2435,7 +2486,7 @@
         <div class="details-item-container">
             <dt class="tag-source">Source:</dt>
             <dd class="tag-source"><ul class="dummy"><li>
-                <a href="index.js.html">index.js</a>, <a href="index.js.html#line251">line 251</a>
+                <a href="index.js.html">index.js</a>, <a href="index.js.html#line279">line 279</a>
             </li></ul></dd>
         </div>
     
@@ -2613,7 +2664,7 @@
         <div class="details-item-container">
             <dt class="tag-source">Source:</dt>
             <dd class="tag-source"><ul class="dummy"><li>
-                <a href="index.js.html">index.js</a>, <a href="index.js.html#line220">line 220</a>
+                <a href="index.js.html">index.js</a>, <a href="index.js.html#line248">line 248</a>
             </li></ul></dd>
         </div>
     
@@ -2658,6 +2709,13 @@
     </div>
 
 
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <pre class="prettyprint"><code>db.get("test"); // 12db.subtract("test", 12); // 0</code></pre>
+
+    </div>
 
 
         
@@ -2791,7 +2849,7 @@
         <div class="details-item-container">
             <dt class="tag-source">Source:</dt>
             <dd class="tag-source"><ul class="dummy"><li>
-                <a href="index.js.html">index.js</a>, <a href="index.js.html#line178">line 178</a>
+                <a href="index.js.html">index.js</a>, <a href="index.js.html#line200">line 200</a>
             </li></ul></dd>
         </div>
     
@@ -2848,6 +2906,13 @@
     </div>
 
 
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <pre class="prettyprint"><code>db.get("test"); // 12db.update("test", (x => x / 2)); // 6</code></pre>
+
+    </div>
 
 
         

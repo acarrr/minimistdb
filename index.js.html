@@ -57,8 +57,7 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const JSONDatabase = require("./databases/JSONDatabase");
-const { isValidValue } = require("./util");
+            <pre class="prettyprint source linenums"><code>const { isValidValue } = require("./util");
 
 class Database {
   /**
@@ -71,6 +70,8 @@ class Database {
   */
   constructor(type, options) {
     if (type == "json") {
+      let JSONDatabase = require("./databases/JSONDatabase");
+
       this.database = new JSONDatabase(options);
     }
   }
@@ -80,6 +81,8 @@ class Database {
    * @param {String} key
    * @param {Number|String|Boolean|Object|Array} value
    * @returns {Number|String|Boolean|Object|Array}
+   * @example
+   * db.set("test.okey", 12); // {"test": {"okey": 12}}
   */
   set(key, value) {
     if (typeof key == "undefined") throw new TypeError("\"key\" parameter must be available.");
@@ -94,8 +97,10 @@ class Database {
    * Deletes data from created database.
    * @param {String} key
    * @returns {true}
+   * @example
+   * db.delete("test.okey"); // 12
   */
-  delete(key, value) {
+  delete(key) {
     if (typeof key == "undefined") throw new TypeError("\"key\" parameter must be available.");
     if (typeof key != "string") throw new TypeError("\"key\" parameter must be String.");
 
@@ -107,6 +112,8 @@ class Database {
   /**
    * All data in created database.
    * @returns {Object}
+   * @example
+   * db.all(); // {"test": {"okey": 12}}
   */
   all() {
     return this.database.all();
@@ -116,6 +123,8 @@ class Database {
    * Gets data from created database.
    * @param {String} key
    * @returns {Number|String|Boolean|Object|Array}
+   * @example
+   * db.get("test"); // {"okey": 12}
   */
   get(key) {
     if (typeof key == "undefined") throw new TypeError("\"key\" parameter must be available.");
@@ -127,7 +136,9 @@ class Database {
   /**
    * Checks if data in created database.
    * @param {String} key
-   * @returns {Number|String|Boolean|Object|Array}
+   * @returns {Boolean}
+   * @example
+   * db.has("test"); // true
   */
   has(key) {
     if (typeof key == "undefined") throw new TypeError("\"key\" parameter must be available.");
@@ -137,7 +148,7 @@ class Database {
   }
 
   /**
-   * Gets data from created database.
+   * Gets data from created database. Clone of {@link Database#get get} funtion.
    * @param {String} key
    * @returns {Number|String|Boolean|Object|Array}
   */
@@ -150,6 +161,8 @@ class Database {
    * @param {String} key
    * @param {Number|String|Boolean|Object|Array} value
    * @returns {Array}
+   * @example
+   * db.push("test.hello", 12); // [12]
   */
   push(key, value) {
     if (typeof key == "undefined") throw new TypeError("\"key\" parameter must be available.");
@@ -175,6 +188,9 @@ class Database {
    * @param {String} key
    * @param {Number} index
    * @returns {Array}
+   * @example
+   * db.get("test"); // [12, 21, 32]
+   * db.delByIndex("test", 1); // [12, 32]
   */
   delByIndex(key, index) {
     if (typeof key == "undefined") throw new TypeError("\"key\" parameter must be available.");
@@ -203,6 +219,9 @@ class Database {
    * @param {String} key
    * @param {Number|String|Boolean|Object|Array} value
    * @returns {Array}
+   * @example
+   * db.get("test"); // [12, 21, 32]
+   * db.delByValue("test", 21); // [12, 32]
   */
   delByValue(key, value) {
     if (typeof key == "undefined") throw new TypeError("\"key\" parameter must be available.");
@@ -233,6 +252,9 @@ class Database {
    * @param {String} key
    * @param {Function} func
    * @returns {Number|String|Boolean|Object|Array}
+   * @example
+   * db.get("test"); // 12
+   * db.update("test", (x => x / 2)); // 6
   */
   update(key, func) {
     if (typeof key == "undefined") throw new TypeError("\"key\" parameter must be available.");
@@ -254,6 +276,9 @@ class Database {
    * @param {String} key
    * @param {Number} value
    * @returns {Number}
+   * @example
+   * db.get("test"); // 12
+   * db.add("test", 12); // 24
   */
   add(key, value) {
     if (typeof key == "undefined") throw new TypeError("\"key\" parameter must be available.");
@@ -275,6 +300,9 @@ class Database {
    * @param {String} key
    * @param {Number} value
    * @returns {Number}
+   * @example
+   * db.get("test"); // 12
+   * db.subtract("test", 12); // 0
   */
   subtract(key, value) {
     if (typeof key == "undefined") throw new TypeError("\"key\" parameter must be available.");
@@ -292,7 +320,7 @@ class Database {
   }
 
   /**
-   * Subtracts a value to data in created database.
+   * Subtracts a value to data in created database. Clone of {@link Database#subtract subtract} function.
    * @param {String} key
    * @param {Number} value
    * @returns {Number}
@@ -302,7 +330,7 @@ class Database {
   }
 
   /**
-   * Subtracts a value to data in created database.
+   * Subtracts a value to data in created database. Clone of {@link Database#subtract subtract} function.
    * @param {String} key
    * @param {Number} value
    * @returns {Number}
