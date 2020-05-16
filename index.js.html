@@ -42,7 +42,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html"><div class="text">Home</div></a></h2><div class="search-box"><input type="text" placeholder="Search..." id="search-box" /><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-list-div"><h3>Classes</h3><ul><li><a href="Database.html">Database</a><ul class='methods'><li data-type='method'><a href="Database.html#add">add</a></li><li data-type='method'><a href="Database.html#delByIndex">delByIndex</a></li><li data-type='method'><a href="Database.html#delByValue">delByValue</a></li><li data-type='method'><a href="Database.html#fetch">fetch</a></li><li data-type='method'><a href="Database.html#get">get</a></li><li data-type='method'><a href="Database.html#push">push</a></li><li data-type='method'><a href="Database.html#set">set</a></li><li data-type='method'><a href="Database.html#subs">subs</a></li><li data-type='method'><a href="Database.html#substract">substract</a></li><li data-type='method'><a href="Database.html#subtract">subtract</a></li><li data-type='method'><a href="Database.html#update">update</a></li></ul></li></ul></div>
+    <h2><a href="index.html"><div class="text">Home</div></a></h2><div class="search-box"><input type="text" placeholder="Search..." id="search-box" /><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-list-div"><h3>Classes</h3><ul><li><a href="Database.html">Database</a><ul class='methods'><li data-type='method'><a href="Database.html#add">add</a></li><li data-type='method'><a href="Database.html#all">all</a></li><li data-type='method'><a href="Database.html#delByIndex">delByIndex</a></li><li data-type='method'><a href="Database.html#delByValue">delByValue</a></li><li data-type='method'><a href="Database.html#delete">delete</a></li><li data-type='method'><a href="Database.html#fetch">fetch</a></li><li data-type='method'><a href="Database.html#get">get</a></li><li data-type='method'><a href="Database.html#has">has</a></li><li data-type='method'><a href="Database.html#push">push</a></li><li data-type='method'><a href="Database.html#set">set</a></li><li data-type='method'><a href="Database.html#subs">subs</a></li><li data-type='method'><a href="Database.html#substract">substract</a></li><li data-type='method'><a href="Database.html#subtract">subtract</a></li><li data-type='method'><a href="Database.html#update">update</a></li></ul></li></ul></div>
 </nav>
 
 <div id="main">
@@ -57,8 +57,7 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const JSONDatabase = require("./databases/JSONDatabase");
-const { isValidValue } = require("./util");
+            <pre class="prettyprint source linenums"><code>const { isValidValue } = require("./util");
 
 class Database {
   /**
@@ -71,6 +70,8 @@ class Database {
   */
   constructor(type, options) {
     if (type == "json") {
+      let JSONDatabase = require("./databases/JSONDatabase");
+
       this.database = new JSONDatabase(options);
     }
   }
@@ -80,6 +81,8 @@ class Database {
    * @param {String} key
    * @param {Number|String|Boolean|Object|Array} value
    * @returns {Number|String|Boolean|Object|Array}
+   * @example
+   * db.set("test.okey", 12); // {"test": {"okey": 12}}
   */
   set(key, value) {
     if (typeof key == "undefined") throw new TypeError("\"key\" parameter must be available.");
@@ -91,9 +94,37 @@ class Database {
   }
 
   /**
+   * Deletes data from created database.
+   * @param {String} key
+   * @returns {true}
+   * @example
+   * db.delete("test.okey"); // 12
+  */
+  delete(key) {
+    if (typeof key == "undefined") throw new TypeError("\"key\" parameter must be available.");
+    if (typeof key != "string") throw new TypeError("\"key\" parameter must be String.");
+
+    this.database.delete(key);
+
+    return true;
+  }
+
+  /**
+   * All data in created database.
+   * @returns {Object}
+   * @example
+   * db.all(); // {"test": {"okey": 12}}
+  */
+  all() {
+    return this.database.all();
+  }
+
+  /**
    * Gets data from created database.
    * @param {String} key
    * @returns {Number|String|Boolean|Object|Array}
+   * @example
+   * db.get("test"); // {"okey": 12}
   */
   get(key) {
     if (typeof key == "undefined") throw new TypeError("\"key\" parameter must be available.");
@@ -103,7 +134,21 @@ class Database {
   }
 
   /**
-   * Gets data from created database.
+   * Checks if data in created database.
+   * @param {String} key
+   * @returns {Boolean}
+   * @example
+   * db.has("test"); // true
+  */
+  has(key) {
+    if (typeof key == "undefined") throw new TypeError("\"key\" parameter must be available.");
+    if (typeof key != "string") throw new TypeError("\"key\" parameter must be String.");
+
+    return this.database.has(key);
+  }
+
+  /**
+   * Gets data from created database. Clone of {@link Database#get get} funtion.
    * @param {String} key
    * @returns {Number|String|Boolean|Object|Array}
   */
@@ -116,6 +161,8 @@ class Database {
    * @param {String} key
    * @param {Number|String|Boolean|Object|Array} value
    * @returns {Array}
+   * @example
+   * db.push("test.hello", 12); // [12]
   */
   push(key, value) {
     if (typeof key == "undefined") throw new TypeError("\"key\" parameter must be available.");
@@ -141,6 +188,9 @@ class Database {
    * @param {String} key
    * @param {Number} index
    * @returns {Array}
+   * @example
+   * db.get("test"); // [12, 21, 32]
+   * db.delByIndex("test", 1); // [12, 32]
   */
   delByIndex(key, index) {
     if (typeof key == "undefined") throw new TypeError("\"key\" parameter must be available.");
@@ -169,6 +219,9 @@ class Database {
    * @param {String} key
    * @param {Number|String|Boolean|Object|Array} value
    * @returns {Array}
+   * @example
+   * db.get("test"); // [12, 21, 32]
+   * db.delByValue("test", 21); // [12, 32]
   */
   delByValue(key, value) {
     if (typeof key == "undefined") throw new TypeError("\"key\" parameter must be available.");
@@ -199,6 +252,9 @@ class Database {
    * @param {String} key
    * @param {Function} func
    * @returns {Number|String|Boolean|Object|Array}
+   * @example
+   * db.get("test"); // 12
+   * db.update("test", (x => x / 2)); // 6
   */
   update(key, func) {
     if (typeof key == "undefined") throw new TypeError("\"key\" parameter must be available.");
@@ -220,6 +276,9 @@ class Database {
    * @param {String} key
    * @param {Number} value
    * @returns {Number}
+   * @example
+   * db.get("test"); // 12
+   * db.add("test", 12); // 24
   */
   add(key, value) {
     if (typeof key == "undefined") throw new TypeError("\"key\" parameter must be available.");
@@ -241,6 +300,9 @@ class Database {
    * @param {String} key
    * @param {Number} value
    * @returns {Number}
+   * @example
+   * db.get("test"); // 12
+   * db.subtract("test", 12); // 0
   */
   subtract(key, value) {
     if (typeof key == "undefined") throw new TypeError("\"key\" parameter must be available.");
@@ -258,7 +320,7 @@ class Database {
   }
 
   /**
-   * Subtracts a value to data in created database.
+   * Subtracts a value to data in created database. Clone of {@link Database#subtract subtract} function.
    * @param {String} key
    * @param {Number} value
    * @returns {Number}
@@ -268,7 +330,7 @@ class Database {
   }
 
   /**
-   * Subtracts a value to data in created database.
+   * Subtracts a value to data in created database. Clone of {@link Database#subtract subtract} function.
    * @param {String} key
    * @param {Number} value
    * @returns {Number}
@@ -296,7 +358,7 @@ module.exports = Database;</code></pre>
 <script>prettyPrint();</script>
 <script src="scripts/linenumber.js"></script>
 <script>
-var list = [{"title":"Database","link":"<a href=\"Database.html\">Database</a>"},{"title":"Database#add","link":"<a href=\"Database.html#add\">Database &rtrif; add</a>"},{"title":"Database#delByIndex","link":"<a href=\"Database.html#delByIndex\">Database &rtrif; delByIndex</a>"},{"title":"Database#delByValue","link":"<a href=\"Database.html#delByValue\">Database &rtrif; delByValue</a>"},{"title":"Database#fetch","link":"<a href=\"Database.html#fetch\">Database &rtrif; fetch</a>"},{"title":"Database#get","link":"<a href=\"Database.html#get\">Database &rtrif; get</a>"},{"title":"Database#push","link":"<a href=\"Database.html#push\">Database &rtrif; push</a>"},{"title":"Database#set","link":"<a href=\"Database.html#set\">Database &rtrif; set</a>"},{"title":"Database#subs","link":"<a href=\"Database.html#subs\">Database &rtrif; subs</a>"},{"title":"Database#substract","link":"<a href=\"Database.html#substract\">Database &rtrif; substract</a>"},{"title":"Database#subtract","link":"<a href=\"Database.html#subtract\">Database &rtrif; subtract</a>"},{"title":"Database#update","link":"<a href=\"Database.html#update\">Database &rtrif; update</a>"}];
+var list = [{"title":"Database","link":"<a href=\"Database.html\">Database</a>"},{"title":"Database#add","link":"<a href=\"Database.html#add\">Database &rtrif; add</a>"},{"title":"Database#all","link":"<a href=\"Database.html#all\">Database &rtrif; all</a>"},{"title":"Database#delByIndex","link":"<a href=\"Database.html#delByIndex\">Database &rtrif; delByIndex</a>"},{"title":"Database#delByValue","link":"<a href=\"Database.html#delByValue\">Database &rtrif; delByValue</a>"},{"title":"Database#delete","link":"<a href=\"Database.html#delete\">Database &rtrif; delete</a>"},{"title":"Database#fetch","link":"<a href=\"Database.html#fetch\">Database &rtrif; fetch</a>"},{"title":"Database#get","link":"<a href=\"Database.html#get\">Database &rtrif; get</a>"},{"title":"Database#has","link":"<a href=\"Database.html#has\">Database &rtrif; has</a>"},{"title":"Database#push","link":"<a href=\"Database.html#push\">Database &rtrif; push</a>"},{"title":"Database#set","link":"<a href=\"Database.html#set\">Database &rtrif; set</a>"},{"title":"Database#subs","link":"<a href=\"Database.html#subs\">Database &rtrif; subs</a>"},{"title":"Database#substract","link":"<a href=\"Database.html#substract\">Database &rtrif; substract</a>"},{"title":"Database#subtract","link":"<a href=\"Database.html#subtract\">Database &rtrif; subtract</a>"},{"title":"Database#update","link":"<a href=\"Database.html#update\">Database &rtrif; update</a>"}];
 setupSearch(list)
 </script>
 
