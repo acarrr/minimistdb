@@ -1,2 +1,0 @@
-# minimistdb
-MinimistDB documentation site
